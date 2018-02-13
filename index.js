@@ -94,7 +94,10 @@ $('.editsite').on('click',function(e){
     let id = ($(e.currentTarget).parent().parent().text()).replace(/\s+/g,"")
     hash[id]=value
     localStorage.setItem('site', JSON.stringify(hash))
-    $(e.currentTarget).parent().siblings().attr("src", "https://"+value + "/favicon.ico" ).error(function(){$(e.currentTarget).parent().siblings().hide()})
+    
+    let img = e.currentTarget.parentNode.nextSibling
+    
+    img.src = 'http://'+value + '/favicon.ico'
     layer.close(index)
     isedit = false
   });  
@@ -105,14 +108,16 @@ $('.deletesite').on('click',function(e){
   if(hash[id] === ''){layer.alert('加上网址才可以删除呦~'); }
   hash[id]=''
   localStorage.setItem('site', JSON.stringify(hash))
-  $(e.currentTarget).parent().siblings().attr("src", "" ).error(function(){$(this).hide()})
+  let img = e.currentTarget.parentNode.nextSibling
+    
+    img.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
 })
 function createImage(domain){
   var img = document.createElement('img')
   if(domain){
     img.src = 'http://'+ domain + '/favicon.ico'
     img.onerror = function(){
-      $(this).hide()
+      img.src = '//i.loli.net/2017/11/10/5a05afbc5e183.png'
     }
   }
   return img
@@ -137,10 +142,14 @@ function listenToUser(hash){
 function search(){
   $('.baidu').on('click',function(){
     let val = $(this).siblings().eq(0).val()
-    window.open("https://www.baidu.com/s?wd=" +val )
+    if(val === ''){layer.alert('客官~写点东西在搜索呗~');
+  }else{window.open("https://www.baidu.com/s?wd=" +val )}
+    
   })
   $('.google').on('click',function(){
     let val = $(this).siblings().eq(0).val()
-    window.open("https://www.google.com/search?q=" + val)
+    if(val === ''){layer.alert('客官~写点东西在搜索呗~');
+  }else{window.open("https://www.google.com/search?q=" + val)}
+    
   })
 }
