@@ -94,7 +94,7 @@ $('.editsite').on('click',function(e){
     let id = ($(e.currentTarget).parent().parent().text()).replace(/\s+/g,"")
     hash[id]=value
     localStorage.setItem('site', JSON.stringify(hash))
-    $(e.currentTarget).parent().siblings().attr("src", "http://"+value + "/favicon.ico" )
+    $(e.currentTarget).parent().siblings().attr("src", "https://"+value + "/favicon.ico" )
     layer.close(index)
     isedit = false
   });  
