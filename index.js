@@ -16,7 +16,7 @@ function msgbox(){
         title:'使用帮助',
         skin: 'layui-layer-lan', //加上边框
         area: ['420px', '140px'], //宽高
-        content: '欢迎使用本网站，鼠标悬浮于键盘可修改或删除书签地址'
+        content: '欢迎使用本网站，鼠标悬浮于键盘可修改或删除书签地址，因国内网络环境，部分网站icon可能无法正常显示'
       });
     });
   }
@@ -94,7 +94,7 @@ $('.editsite').on('click',function(e){
     let id = ($(e.currentTarget).parent().parent().text()).replace(/\s+/g,"")
     hash[id]=value
     localStorage.setItem('site', JSON.stringify(hash))
-    $(e.currentTarget).parent().siblings().attr("src", "https://"+value + "/favicon.ico" )
+    $(e.currentTarget).parent().siblings().attr("src", "https://"+value + "/favicon.ico" ).error(function(){$(e.currentTarget).parent().siblings().hide()})
     layer.close(index)
     isedit = false
   });  
@@ -102,6 +102,7 @@ $('.editsite').on('click',function(e){
 $('.deletesite').on('click',function(e){
   e.stopPropagation();
   let id = ($(e.currentTarget).parent().parent().text()).replace(/\s+/g,"")
+  if(hash[id] === ''){layer.alert('加上网址才可以删除呦~'); }
   hash[id]=''
   localStorage.setItem('site', JSON.stringify(hash))
   $(e.currentTarget).parent().siblings().attr("src", "" ).error(function(){$(this).hide()})
@@ -110,6 +111,9 @@ function createImage(domain){
   var img = document.createElement('img')
   if(domain){
     img.src = 'http://'+ domain + '/favicon.ico'
+    img.onerror = function(){
+      $(this).hide()
+    }
   }
   return img
 }
