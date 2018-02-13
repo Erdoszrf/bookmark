@@ -104,7 +104,7 @@ $('.deletesite').on('click',function(e){
   let id = ($(e.currentTarget).parent().parent().text()).replace(/\s+/g,"")
   hash[id]=''
   localStorage.setItem('site', JSON.stringify(hash))
-  $(e.currentTarget).parent().siblings().attr("src", "" )
+  $(e.currentTarget).parent().siblings().attr("src", "" ).error(function(){$(this).hide()})
 })
 function createImage(domain){
   var img = document.createElement('img')
