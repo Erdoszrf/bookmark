@@ -68,7 +68,7 @@ input:focus {
 
 
 body {
-  background:#DDDEE0;
+  background:#81C7D4;
 }
 
 main {
@@ -81,7 +81,7 @@ main {
  
 
 .wrapper {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(105, 176, 172, 0.6);
   border-radius: 10px;
   text-align:center;
 }
