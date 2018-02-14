@@ -139,6 +139,12 @@ function listenToUser(hash){
     }
   })
 }
+$('input').on('focus',function(){
+  isedit = true
+})
+$('input').on('blur',function(){
+  isedit = false
+})
 function search(){
   $('.baidu').on('click',function(){
     let val = $(this).siblings().eq(0).val()
